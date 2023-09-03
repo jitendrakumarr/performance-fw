@@ -14,7 +14,7 @@
         <encoding>UTF-8</encoding>
         <gatling.version>3.3.1</gatling.version>
         <gatling-maven-plugin.version>3.1.1</gatling-maven-plugin.version>
-        <env>env_qa</env>
+        <env>qa</env>
         <className>AuthorsSimulation</className>
     </properties>
 
@@ -59,7 +59,6 @@
                         <jvmArg>-Denv=${env}</jvmArg>
                         <jvmArg>-DClassName=${className}</jvmArg>
                     </jvmArgs>
-                    <!--<fork>true</fork>-->
                     <propagateSystemProperties>true</propagateSystemProperties>
                 </configuration>
             </plugin>
