@@ -4,5 +4,5 @@ import io.gatling.core.Predef.{ _}
 
 object Feeder {
 
-  val contents = csv("data/test_data.csv").random.circular
+  val test_data = csv("data/test_data.csv").random.circular
 }
