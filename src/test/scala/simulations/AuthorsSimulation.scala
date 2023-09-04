@@ -11,15 +11,16 @@ import scala.language.postfixOps
 class AuthorsSimulation extends Simulation {
 
   val httpConf = http
+  val nbUsers = Integer.getInteger("users", 1)
+  val myRamp = java.lang.Long.getLong("ramp", 0)
 
   val author_journey = scenario("Authors API Performance")
-    .exec(AuthorAPIJourney.authors_journey)
-
+    .exec(AuthorAPIJourneyRandomSwitch.authors_journey)
 
   var testSetup =
     setUp(
       author_journey.inject(
-        constantConcurrentUsers(2) during (1 seconds), //Constant 1 user for 1 seconds
+        rampUsers(nbUsers).during(myRamp)
       )
     ).protocols(httpConf)
 }

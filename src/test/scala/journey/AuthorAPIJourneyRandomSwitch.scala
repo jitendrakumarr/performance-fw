@@ -3,8 +3,7 @@ package journey
 import feeders.Feeder
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-import utils.Config
-
+import utils.{Config, RandomUtil}
 
 /**
  * @Author Jitendra Kumar
@@ -33,19 +32,19 @@ object AuthorAPIJourneyRandomSwitch {
             .header("accept", "text/plain; v=1.0")
             .header("Content-Type", "application/json")
             .body(StringBody(
-              """{
+              s"""{
                 |  "id": 0,
                 |  "idBook": 0,
-                |  "firstName": "string",
-                |  "lastName": "string"
+                |  "firstName": "${RandomUtil.generateRandomString(7)}",
+                |  "lastName": "${RandomUtil.generateRandomString(7)}"
                 |}""".stripMargin)).asJson
             .check(status is 200)
         ),
 
       10.0 ->
         exec(
-          http("GET /Authors/authors/books/{book_id}")
-            .get(baseUrl + "/Authors/authors/books{book_id}")
+          http("GET /Authors/authors/books/${book_id}")
+            .get(baseUrl + "/Authors/authors/books/${book_id}")
             .header("accept", "text/plain; v=1.0")
             .header("Content-Type", "application/json")
             .check(status is 200)
@@ -53,8 +52,8 @@ object AuthorAPIJourneyRandomSwitch {
 
       20.0 ->
         exec(
-          http("GET /Authors/{author_id}")
-            .get(baseUrl + "/Authors/{author_id}")
+          http("GET /Authors/${author_id}")
+            .get(baseUrl + "/Authors/${author_id}")
             .header("accept", "text/plain; v=1.0")
             .header("Content-Type", "application/json")
             .check(status is 200)
@@ -62,24 +61,24 @@ object AuthorAPIJourneyRandomSwitch {
 
       20.0 ->
         exec(
-          http("PUT /Authors/{author_id}")
-            .put(baseUrl + "/Authors/{author_id}")
+          http("PUT /Authors/${author_id}")
+            .put(baseUrl + "/Authors/${author_id}")
             .header("accept", "text/plain; v=1.0")
             .header("Content-Type", "application/json")
             .body(StringBody(
-              """{
+              s"""{
                 |  "id": 0,
                 |  "idBook": 0,
-                |  "firstName": "string",
-                |  "lastName": "string"
+                  "firstName": "${RandomUtil.generateRandomString(7)}",
+                |  "lastName": "${RandomUtil.generateRandomString(7)}"
                 |}""".stripMargin)).asJson
             .check(status is 200)
         ),
 
       20.0 ->
         exec(
-          http("Delete /Authors/{author_id}")
-            .delete(baseUrl + "/Authors/{author_id}")
+          http("Delete /Authors/${author_id}")
+            .delete(baseUrl + "/Authors/${author_id}")
             .header("accept", "text/plain; v=1.0")
             .header("Content-Type", "application/json")
             .check(status is 200)
