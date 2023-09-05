@@ -15,7 +15,7 @@ class AuthorsSimulation extends Simulation {
   val myRamp = java.lang.Long.getLong("ramp", 0)
 
   val author_journey = scenario("Authors API Performance")
-    .exec(AuthorAPIJourneyRandomSwitch.authors_journey)
+    .exec(AuthorAPIJourney.authors_journey)
 
   var testSetup =
     setUp(
