@@ -69,7 +69,7 @@ object AuthorAPIJourneyRandomSwitch {
               s"""{
                 |  "id": 0,
                 |  "idBook": 0,
-                  "firstName": "${RandomUtil.generateRandomString(7)}",
+                | "firstName": "${RandomUtil.generateRandomString(7)}",
                 |  "lastName": "${RandomUtil.generateRandomString(7)}"
                 |}""".stripMargin)).asJson
             .check(status is 200)

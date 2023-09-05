@@ -3,7 +3,7 @@ package journey
 import feeders.Feeder
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-import utils.Config
+import utils.{Config, RandomUtil}
 
 
 /**
@@ -28,11 +28,11 @@ object AuthorAPIJourney {
           .header("accept", "text/plain; v=1.0")
           .header("Content-Type", "application/json")
           .body(StringBody(
-            """{
-              |  "id": 0,
+            s"""{
+              "id": 0,
               |  "idBook": 0,
-              |  "firstName": "string",
-              |  "lastName": "string"
+              |  "firstName": "${RandomUtil.generateRandomString(7)}",
+              |  "lastName": "${RandomUtil.generateRandomString(7)}"
               |}""".stripMargin)).asJson
           .check(status is 200)
       )
@@ -56,11 +56,11 @@ object AuthorAPIJourney {
           .header("accept", "text/plain; v=1.0")
           .header("Content-Type", "application/json")
           .body(StringBody(
-            """{
+            s"""{
               |  "id": 0,
               |  "idBook": 0,
-              |  "firstName": "string",
-              |  "lastName": "string"
+              | "firstName": "${RandomUtil.generateRandomString(7)}",
+              |  "lastName": "${RandomUtil.generateRandomString(7)}"
               |}""".stripMargin)).asJson
           .check(status is 200)
       )

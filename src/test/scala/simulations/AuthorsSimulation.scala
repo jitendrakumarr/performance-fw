@@ -20,7 +20,7 @@ class AuthorsSimulation extends Simulation {
   var testSetup =
     setUp(
       author_journey.inject(
-        rampUsers(nbUsers).during(myRamp)
+        rampUsers(nbUsers).during(myRamp seconds)
       )
     ).protocols(httpConf)
 }
