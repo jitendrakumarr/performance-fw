@@ -3,10 +3,10 @@
 ```
 1. Clone this repo and import as maven project.
 2. Setup your IDE for scala, plugin is needed.
-3. Java(11) and mvn should be configured.
+3. Java(11) and mvn should be configured in the system.
 ```
 
-# Execute the script specify class and env
+# Execute the script specify simulation class, env, users and rampUp time in seconds.
 
 ```
 Syntax: 
@@ -20,4 +20,18 @@ This will execute the class mentiond in the pom.xml file on qa env.
 If env is also not provided then env will be picked from pom.xml only
     e.g. mvn gatling:test
     
+```
+
+# Scripting
+
+```
+test data files: stored in src/test/resources/data
+environment config: stored in src/test/resources e.g qa.conf
+
+we have to write our journey(API call sequence) in journey package under src/test/scala.
+
+the load simulation setup and journey call in under simulation package under src/test/scala.
+
+
+
 ```

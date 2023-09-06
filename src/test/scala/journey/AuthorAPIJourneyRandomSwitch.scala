@@ -8,6 +8,8 @@ import utils.{Config, RandomUtil}
 /**
  * @Author Jitendra Kumar
  * @Date 31/08/23 14:24 PM
+ *
+ * This is used to generate load with weightage to each API or set of API.
  */
 object AuthorAPIJourneyRandomSwitch {
 

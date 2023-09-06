@@ -5,10 +5,10 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import utils.{Config, RandomUtil}
 
-
 /**
  * @Author Jitendra Kumar
  * @Date 31/08/23 14:24 PM
+ * This is a sequence/chain of API needed to be called in our load test scenario.
  */
 object AuthorAPIJourney {
 
@@ -21,7 +21,7 @@ object AuthorAPIJourney {
           .get(baseUrl + "/Authors")
           .header("accept", "text/plain; v=1.0")
           .check(status is 200)
-      )
+      ).pause(1)
       .exec(
         http("POST /Authors")
           .post(baseUrl + "/Authors")
@@ -35,7 +35,7 @@ object AuthorAPIJourney {
               |  "lastName": "${RandomUtil.generateRandomString(7)}"
               |}""".stripMargin)).asJson
           .check(status is 200)
-      )
+      ).pause(2)
       .exec(
         http("GET /Authors/authors/books/${book_id}")
           .get(baseUrl + "/Authors/authors/books/${book_id}")
@@ -43,6 +43,7 @@ object AuthorAPIJourney {
           .header("Content-Type", "application/json")
           .check(status is 200)
       )
+      .pause(1)
       .exec(
         http("GET /Authors/${author_id}")
           .get(baseUrl + "/Authors/${author_id}")
@@ -50,6 +51,7 @@ object AuthorAPIJourney {
           .header("Content-Type", "application/json")
           .check(status is 200)
       )
+      .pause(1)
       .exec(
         http("PUT /Authors/${author_id}")
           .put(baseUrl + "/Authors/${author_id}")
@@ -71,5 +73,6 @@ object AuthorAPIJourney {
           .header("Content-Type", "application/json")
           .check(status is 200)
       )
+      .pause(2)
   }
 }
